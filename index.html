@@ -17,14 +17,12 @@
       overflow: hidden;
     }
 
-    /* انیمیشن گرادیانت بکگراند */
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    /* نور موس */
     .light {
       position: fixed;
       top: 0;
@@ -40,7 +38,6 @@
       z-index: 9999;
     }
 
-    /* باکس شیشه‌ای */
     .glass-box {
       width: 90%;
       max-width: 1100px;
@@ -61,10 +58,10 @@
       to { opacity: 1; transform: scale(1); }
     }
 
-    /* دایره‌ها */
     .circle {
       text-align: center;
       animation: float 6s ease-in-out infinite;
+      cursor: pointer;
     }
 
     @keyframes float {
@@ -89,8 +86,8 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .circle video:hover,
-    .circle img:hover {
+    .circle:hover video,
+    .circle:hover img {
       transform: scale(1.12);
       box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
     }
@@ -102,72 +99,33 @@
       font-weight: bold;
       letter-spacing: 0.5px;
       text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-      from { text-shadow: 0 0 8px #fff, 0 0 16px #0ff, 0 0 24px #0ff; }
-      to { text-shadow: 0 0 15px #ff0, 0 0 25px #f0f, 0 0 35px #0ff; }
-    }
-
-    /* دکمه تغییر تم */
-    .theme-buttons {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      display: flex;
-      gap: 10px;
-      z-index: 999;
-    }
-
-    .theme-buttons button {
-      padding: 8px 16px;
-      border: none;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.2);
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-      backdrop-filter: blur(6px);
-    }
-
-    .theme-buttons button:hover {
-      background: rgba(255,255,255,0.4);
-      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
-  <!-- نور موس -->
   <div class="light" id="light"></div>
 
-  <!-- دکمه‌های تغییر تم -->
-  <div class="theme-buttons">
-    <button onclick="setTheme('dark')">Dark</button>
-  </div>
-
   <div class="glass-box">
-    <div class="circle">
+    <a href="industrial.html" class="circle">
       <video src="Industrial.mp4" autoplay muted loop></video>
       <p>Industrial</p>
-    </div>
-    <div class="circle">
+    </a>
+    <a href="medical.html" class="circle">
       <video src="Medical project.mp4" autoplay muted loop></video>
       <p>Medical</p>
-    </div>
-    <div class="circle">
+    </a>
+    <a href="banking.html" class="circle">
       <video src="banking.mp4" autoplay muted loop></video>
       <p>Finance & Banking</p>
-    </div>
-    <div class="circle">
+    </a>
+    <a href="video.html" class="circle">
       <video src="generated_video.mp4" autoplay muted loop></video>
       <p>Video Example</p>
-    </div>
-    <div class="circle">
+    </a>
+    <a href="farming.html" class="circle">
       <video src="Smart farming.mp4" autoplay muted loop></video>
       <p>Smart Farming</p>
-    </div>
+    </a>
   </div>
 
   <script>
@@ -188,17 +146,6 @@
       requestAnimationFrame(animateLight);
     }
     animateLight();
-
-    // تغییر تم
-    function setTheme(theme) {
-      if (theme === "dark") {
-        document.body.style.background = "linear-gradient(135deg, #000, #333)";
-      } else if (theme === "light") {
-        document.body.style.background = "linear-gradient(135deg, #fff, #ddd)";
-      } else if (theme === "neon") {
-        document.body.style.background = "linear-gradient(135deg, #0f0, #0ff, #f0f)";
-      }
-    }
   </script>
 </body>
 </html>

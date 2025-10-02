@@ -100,11 +100,93 @@
       letter-spacing: 0.5px;
       text-shadow: 0 2px 10px rgba(0,0,0,0.8);
     }
+
+    /* ===== Info Button & Drawer ===== */
+    .info-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10000;
+    }
+
+    #info-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #fff;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    #info-btn:hover {
+      transform: scale(1.1);
+      background: rgba(255,255,255,0.3);
+    }
+
+    .drawer {
+      position: absolute;
+      top: 60px;
+      right: 0;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      padding: 10px;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(-20px);
+      pointer-events: none;
+      transition: all 0.4s ease;
+    }
+
+    .drawer.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .drawer a img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .drawer a img:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 15px rgba(255,255,255,0.8);
+    }
+
   </style>
 </head>
 <body>
   <div class="light" id="light"></div>
 
+  <!-- Info Button & Social Drawer -->
+  <div class="info-container">
+    <button id="info-btn">ℹ️</button>
+    <div id="social-drawer" class="drawer">
+      <a href="https://www.instagram.com/username" target="_blank">
+        <img src="instagram-icon.png" alt="Instagram">
+      </a>
+      <a href="https://www.linkedin.com/in/username" target="_blank">
+        <img src="linkedin-icon.png" alt="LinkedIn">
+      </a>
+      <a href="https://github.com/username" target="_blank">
+        <img src="github-icon.png" alt="GitHub">
+      </a>
+      <a href="https://twitter.com/username" target="_blank">
+        <img src="twitter-icon.png" alt="Twitter">
+      </a>
+    </div>
+  </div>
+
+  <!-- Glass Box -->
   <div class="glass-box">
     <a href="industrial.html" class="circle">
       <video src="Industrial.mp4" autoplay muted loop></video>
@@ -129,15 +211,14 @@
   </div>
 
   <script>
+    // Light follow mouse
     const light = document.getElementById("light");
     let mouseX = 0, mouseY = 0;
     let currentX = 0, currentY = 0;
-
     document.addEventListener("mousemove", (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
     });
-
     function animateLight() {
       currentX += (mouseX - currentX) * 0.1;
       currentY += (mouseY - currentY) * 0.1;
@@ -146,6 +227,13 @@
       requestAnimationFrame(animateLight);
     }
     animateLight();
+
+    // Toggle Social Drawer
+    const infoBtn = document.getElementById("info-btn");
+    const drawer = document.getElementById("social-drawer");
+    infoBtn.addEventListener("click", () => {
+      drawer.classList.toggle("show");
+    });
   </script>
 </body>
 </html>
